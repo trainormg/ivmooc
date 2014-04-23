@@ -10,3 +10,4 @@ The project and the visualizations are on gitpages.
 * Observations heatmap: http://trainormg.github.io/ivmooc/heatmap.html?measure=preds
 * Preys heatmap: http://trainormg.github.io/ivmooc/heatmap.html?measure=preys
  
+The visualizations use the StyledMarker javascript library from https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries. Many thanks to the authors.
