@@ -1,83 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <title>Ivmooc by trainormg</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <title>Ivmooc project page</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
+    <div class="wrapper">
+      <header class="without-description">
         <h1>Ivmooc</h1>
-        <h2></h2>
-        <a href="https://github.com/trainormg/ivmooc" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+        <p></p>
+        <p class="view"><a href="https://github.com/trainormg/ivmooc">View the Project on GitHub <small>trainormg/ivmooc</small></a></p>
+        <ul>
+          <li><a href="https://github.com/trainormg/ivmooc/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/trainormg/ivmooc/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/trainormg/ivmooc">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="ivmooc" class="anchor" href="#ivmooc"><span class="octicon octicon-link"></span></a>ivmooc</h1>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
+<p>Information Visualization MOOC project page.</p>
 
-		<h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to my Information Visualization MOOC project page.</h3>
-These are a couple of maps created for the project:
+<p>This project collects some sample visualizations for the final course's project:<br>
+"<em>Synthesizing spatial diet data of fishes from the Gulf of Mexico</em>"</p>
+
+<h2>
+<a name="google-maps-visualizations" class="anchor" href="#google-maps-visualizations"><span class="octicon octicon-link"></span></a>google maps visualizations</h2>
+
+<p><strong>heatmap.html</strong> contains html and javascript code for the heatmap visualizations of preys and observations.<br>
+To switch from one to the other, you can add the measure parameter to the url.<br>
+So <code>heatmap.html?measure=preys</code> will show the preys heatmap, while <code>heatmap.html?measure=preds</code> will show the observations heatmap, the default is preys.</p>
+
+<p><strong>hexmap.html</strong> contains the previous maps with a panel that lets you select which one to show, plus an hexagonal grid that
+divides the <em>Gulf of Mexico</em> area in the sectors used for the circos visualizations described below.</p>
+
+<p>The project and the visualizations are on gitpages.  </p>
+
 <ul>
-	<li><a href="heatmap.html?measure=preds">Observations heatmap</a></li> 
-	<li><a href="heatmap.html?measure=preys">Preys heatmap</a></li> 
-</ul>
-This is a dynamic, configurable visualization with an hex grid of sectors over the map, which includes the previous ones:
+<li>Home page: <a href="http://trainormg.github.io/ivmooc/">http://trainormg.github.io/ivmooc/</a>
+</li>
+<li>Observations heatmap: <a href="http://trainormg.github.io/ivmooc/heatmap.html?measure=preds">http://trainormg.github.io/ivmooc/heatmap.html?measure=preds</a>
+</li>
+<li>Preys heatmap: <a href="http://trainormg.github.io/ivmooc/heatmap.html?measure=preys">http://trainormg.github.io/ivmooc/heatmap.html?measure=preys</a>
+</li>
+<li>
+<strong>Both heatmaps and hexagonal</strong>: <a href="http://trainormg.github.io/ivmooc/hexmap.html">http://trainormg.github.io/ivmooc/hexmap.html</a>
+</li>
+</ul><p>The visualizations use the StyledMarker javascript library from <a href="https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries">https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries</a>. Many thanks to the authors.</p>
+
+<h2>
+<a name="circos-visualizations" class="anchor" href="#circos-visualizations"><span class="octicon octicon-link"></span></a>circos visualizations</h2>
+
+<p>In the <strong><code>circos</code></strong> folder there are some sample visualizations of the scomberomorus cavalla preys data created using <a href="http://circos.ca/">circos</a>, 
+specifically the tabular data visualization online tool you can find at <a href="http://mkweb.bcgsc.ca/tableviewer/visualize/">http://mkweb.bcgsc.ca/tableviewer/visualize/</a>.</p>
+
+<p>The visualization includes only the first 20 most common preys, all the others being grouped under an "others" category.<br>
+Sectors are shown as blue bars, while the species are automatically rendered in different colours.<br>
+Species names are labelled from A to T, Z stand for "others".<br>
+Sectors are the same as in the google map visualization above, are labelled from S1 to S7 and are placed in the same order as on the map.</p>
+
 <ul>
-	<li><a href="hexmap.html">King Mackerel In the Gulf of Mexico</a></li> 
+<li>Blue sectors, sized by the number of observations they contain, in circos/circos01:
+
+<ul>
+<li>medium size png: <a href="http://trainormg.github.io/ivmooc/circos/circos01/circos-table.png">http://trainormg.github.io/ivmooc/circos/circos01/circos-table.png</a>
+</li>
+<li>large size png: <a href="http://trainormg.github.io/ivmooc/circos/circos01/circos-table-large.png">http://trainormg.github.io/ivmooc/circos/circos01/circos-table-large.png</a>
+</li>
+<li>large size svg: <a href="http://trainormg.github.io/ivmooc/circos/circos01/circos-table-large.svg">http://trainormg.github.io/ivmooc/circos/circos01/circos-table-large.svg</a>
+</li>
 </ul>
-The map visualization can be changed from satellite to map using the standard google maps controls.
+</li>
+<li>Blue sectors, all sectors of the same size, in circos/circos02:
 
-		<h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>How to change this page.</h3>
+<ul>
+<li>medium size png: <a href="http://trainormg.github.io/ivmooc/circos/circos02/circos-table.png">http://trainormg.github.io/ivmooc/circos/circos02/circos-table.png</a>
+</li>
+<li>large size png: <a href="http://trainormg.github.io/ivmooc/circos/circos02/circos-table-large.png">http://trainormg.github.io/ivmooc/circos/circos02/circos-table-large.png</a>
+</li>
+<li>large size svg: <a href="http://trainormg.github.io/ivmooc/circos/circos02/circos-table-large.svg">http://trainormg.github.io/ivmooc/circos/circos02/circos-table-large.svg</a>
+</li>
+</ul>
+</li>
+</ul><h3>
+<a name="data" class="anchor" href="#data"><span class="octicon octicon-link"></span></a>data</h3>
 
-<p>This page was created through github's automatic page generator. 
-You can check out the site branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/trainormg/ivmooc/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/trainormg/ivmooc/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/trainormg/ivmooc"></a> is maintained by <a href="https://github.com/trainormg">trainormg</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+<p>The data used for all of the visualizations is in the excel file in the <code>data</code> folder.</p>
+      </section>
     </div>
-
-  
+    <footer>
+      <p>Project maintained by <a href="https://github.com/trainormg">trainormg</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
   </body>
 </html>
