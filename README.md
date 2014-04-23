@@ -11,10 +11,15 @@ This project collects some sample visualizations for the final course's project:
 To switch from one to the other, you can add the measure parameter to the url.  
 So `heatmap.html?measure=preys` will show the preys heatmap, while `heatmap.html?measure=preds` will show the observations heatmap, the default is preys.
 
+**hexmap.html** contains the previous maps with a panel that lets you select which one to show, plus an hexagonal grid that
+divides the *Gulf of Mexico* area in the sectors used for the circos visualizations described below.
+
+
 The project and the visualizations are on gitpages.  
 * Home page: http://trainormg.github.io/ivmooc/
 * Observations heatmap: http://trainormg.github.io/ivmooc/heatmap.html?measure=preds
 * Preys heatmap: http://trainormg.github.io/ivmooc/heatmap.html?measure=preys
+* **Both heatmaps and hexagonal**: http://trainormg.github.io/ivmooc/hexmap.html
  
 The visualizations use the StyledMarker javascript library from https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries. Many thanks to the authors.
 
