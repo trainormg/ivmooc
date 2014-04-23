@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>King Mackerel In the Gulf of Mexico</title>
+	<link rel="stylesheet" type="text/css" href="map.css">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
+	<script src="StyledMarker.js"></script>
+	<script src="obs.js"></script>
+	<script src="tesselate.js"></script>
+    <script type="text/javascript">
+
+var map, pointarray, heatmap;
+var mapCenter = new google.maps.LatLng(24.7284545214364, -89.73310856249998);
+var radius = 1.6;
+
+function getData(measure) {
+	var res = [];
+	
+	var i = 0;
+	observations.forEach(function(item) {
+		res[i] = {location: new google.maps.LatLng(item.lat, item.lng), weight: item[measure]};
+		++i;
+	});
+	return res;
+}
+
+function initialize() {
+//	(24.488731244044978, -89.84297184374998)
+// 	24.528717,-89.513382
+//	var mapCenter = new google.maps.LatLng(24.288612,-89.4474641);
+//	var measure = 'preys';
+	
+	var qs = document.location.search;
+	var inputMeasure = qs.replace(/.*measure=(preys|preds).*/, "$1");
+	if (!(inputMeasure === undefined || inputMeasure == "")) {
+		measure = inputMeasure;
+	}
+	
+	var mapOptions = {
+//		zoom: 6,
+		center: mapCenter,
+		mapTypeId: google.maps.MapTypeId.SATELLITE
+	};
+
+	var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(18.063966,-98.104691), 
+			new google.maps.LatLng(30.903717,-80.39473));
+	
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	map.fitBounds(bounds);
+
+	toggleHeatmap();
+	doTesselate();
+}
+
+function toggleHeatmap() {
+	var measureDom = document.getElementById("measure");
+	var measure = measureDom.value;
+	
+	if (!!heatmap) {
+		heatmap.setMap(null);
+		heatmap = null;
+	}
+
+	if (measure != 'none') {
+		var taxiData = getData(measure);
+		var pointArray = new google.maps.MVCArray(taxiData);
+
+		heatmap = new google.maps.visualization.HeatmapLayer({
+			data: pointArray, radius: 30, opacity: 0.8
+		});
+
+		heatmap.setMap(map);
+		showLegend(measure);
+	} else {
+		var legend = document.getElementById("legend");
+		legend.style.visibility = "hidden";
+	}
+}
+
+function showLegend(measure) {
+	var c = document.getElementById("legendCanvas");
+	var ctx = c.getContext("2d");
+
+	// Create gradient
+	var grd = ctx.createLinearGradient(0,0,300,0);
+	grd.addColorStop(0,"#00ff00");
+	grd.addColorStop(0.25,"#77ff00");
+	grd.addColorStop(0.50,"#ffff00");
+	grd.addColorStop(0.75,"#ff7700");
+	grd.addColorStop(1,"#ff0000");
+
+	// Fill with gradient
+	ctx.fillStyle=grd;
+	ctx.fillRect(0,0,300,10);
+
+	var max = observations.reduce(function(prev, curr, index, array) { 
+			return (prev[measure] > curr[measure] ? prev : curr);
+		}, -1);
+	var min = observations.reduce(function(prev, curr, index, array) { 
+			return (prev[measure] < curr[measure] ? prev : curr);
+		}, 1000);
+	var m = document.getElementById("legendMax");
+	m.textContent = max[measure];
+	var m2 = document.getElementById("legendMin");
+	m2.textContent = min[measure];
+
+	var title = document.getElementById("legendTitle");
+	if (measure == "preys") {
+		title.textContent = "Number of preys";
+	} else {
+		title.textContent = "Number of observations";
+	}
+	var legend = document.getElementById("legend");
+	legend.style.visibility = "visible";
+}
+
+function doTesselate() {
+	var showGrid = document.getElementById("gridControl").checked;
+	var showMarkers = document.getElementById("markersControl").checked;
+
+	vertical = true;
+	hexTess.tesselate(map, mapCenter, radius, vertical, showGrid, showMarkers);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+
+  <body>
+
+    <div id="panel">
+		heatmap:<select name="measure" id="measure" onchange="toggleHeatmap()">
+			<option value="preys" selected>Preys</option>
+			<option value="preds">Observations</option>
+			<option value="none">hide</option>
+		</select>
+		grid: <input type="checkbox" id="gridControl" checked onchange="doTesselate()">
+		&nbsp;sectors: <input type="checkbox" id="markersControl" checked onchange="doTesselate()">
+    </div>
+    <div id="legend">
+		<div style="text-align:center" id="legendTitle">Number of preys</div>
+		<canvas id="legendCanvas" height="10"></canvas><br>
+		<div style="text-align:left; float:left" id="legendMin">1</div>
+		<div style="text-align:right; float:right" id="legendMax"></div>
+    </div>
+    <div id="map-canvas"></div>
+  </body>
+</html>
