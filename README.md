@@ -41,5 +41,31 @@ Sectors are the same as in the google map visualization above, are labelled from
   * large size png: http://trainormg.github.io/ivmooc/circos/circos02/circos-table-large.png
   * large size svg: http://trainormg.github.io/ivmooc/circos/circos02/circos-table-large.svg
 
+Species labels:
+
+|Label	|Species
+|---|---
+|A	|Actinopterygii
+|B	|Detritus
+|C	|Clupeidae
+|D	|Teuthida
+|E	|Penaeidae
+|F	|Caridea
+|G	|Invertebrata
+|H	|Carangidae
+|I	|Brevoortia
+|J	|Opisthonema oglinum
+|L	|Harengula jaguana
+|K	|Haemulidae
+|O	|Triglidae
+|N	|Sparidae
+|M	|Lutjanidae
+|P	|Pectinidae
+|R	|Micropogonias undulatus
+|Q	|Brachyura
+|T	|Sciaenidae
+|Z	|others
+
+  
 ### data
 The data used for all of the visualizations is in the excel file in the `data` folder.
